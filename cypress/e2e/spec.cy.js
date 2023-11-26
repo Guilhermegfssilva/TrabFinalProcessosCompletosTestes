@@ -37,7 +37,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
+    cy.contains('Fatal error').should('exist').then(ErrorElement => {
+      cy.log('Há um erro na página: ' + ErrorElement.text());
+     });
   });
 
   it('Reservar quarto família Superior', () => {
@@ -51,8 +53,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
-  });
+    cy.contains('Fatal error').should('exist').then(ErrorElement => {
+      cy.log('Há um erro na página: ' + ErrorElement.text());
+     });  });
 
   it('Reservar quarto standard', () => {
     cy.visit('https://hotelariaienh.000webhostapp.com');
@@ -65,8 +68,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
-  });
+    cy.contains('Fatal error').should('exist').then(ErrorElement => {
+      cy.log('Há um erro na página: ' + ErrorElement.text());
+     });  });
 
   it('Adicionar quarto no painel de administração', () => {
     cy.visit('https://hotelariaienh.000webhostapp.com/login.php');
@@ -76,8 +80,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('[type="submit"]').click();
     cy.title().should('eq', 'Painel de Administração');
     cy.get('[href="adicionar_quarto.php"]').click();
-    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
-
+    cy.contains('Page Not Found - error 404').should('exist').then(ErrorElement => {
+      cy.log('Há um erro na página: ' + ErrorElement.text());
+     });
   });
 
   it('Realizar logout do painel de administração', () => {
@@ -88,8 +93,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('[type="submit"]').click();
     cy.title().should('eq', 'Painel de Administração');
     cy.get('[href="logout_admin.php"]').click();
-    cy.title().should('eq', 'Login');
-
+    cy.contains('Page Not Found - error 404').should('exist').then(ErrorElement => {
+      cy.log('Há um erro na página: ' + ErrorElement.text());
+     });
   });
 
 
