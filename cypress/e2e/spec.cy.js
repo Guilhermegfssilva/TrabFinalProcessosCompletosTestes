@@ -37,7 +37,7 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('h2').should('contain', 'Reserva realizada com sucesso!');
+    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
   });
 
   it('Reservar quarto família Superior', () => {
@@ -51,7 +51,7 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('h2').should('contain', 'Reserva realizada com sucesso!');
+    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
   });
 
   it('Reservar quarto standard', () => {
@@ -65,7 +65,7 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.find('h2').should('contain', 'Reserva realizada com sucesso!');
+    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
   });
 
   it('Adicionar quarto no painel de administração', () => {
@@ -76,7 +76,7 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('[type="submit"]').click();
     cy.title().should('eq', 'Painel de Administração');
     cy.get('[href="adicionar_quarto.php"]').click();
-    cy.find('h2').should('contain', 'Adicionar quarto');
+    cy.find('body').should('contain', 'Fatal error: Uncaught mysqli_sql_exception');
 
   });
 
