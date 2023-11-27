@@ -37,8 +37,8 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.contains('Fatal error').should('exist').then(ErrorElement => {
-      cy.log('Há um erro na página: ' + ErrorElement.text());
+      cy.contains('Quarto adicionado com sucesso!').should('exist').then(SuccessElement => {
+      cy.log('Mensagem de sucesso: ' + SuccessElement.text());
      });
   });
 
@@ -53,9 +53,10 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.contains('Fatal error').should('exist').then(ErrorElement => {
-      cy.log('Há um erro na página: ' + ErrorElement.text());
-     });  });
+      cy.contains('Quarto adicionado com sucesso!').should('exist').then(SuccessElement => {
+      cy.log('Mensagem de sucesso: ' + SuccessElement.text());
+     }); 
+  });
 
   it('Reservar quarto standard', () => {
     cy.visit('https://hotelariaienh.000webhostapp.com');
@@ -68,9 +69,11 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('#checkout').type('2021-06-30');
     cy.get('#num_hospedes').type('2');
     cy.get('[type="submit"]').click();
-    cy.contains('Fatal error').should('exist').then(ErrorElement => {
-      cy.log('Há um erro na página: ' + ErrorElement.text());
-     });  });
+        cy.contains('Quarto adicionado com sucesso!').should('exist').then(SuccessElement => {
+      cy.log('Mensagem de sucesso: ' + SuccessElement.text());
+     });
+   
+  });
 
   it('Adicionar quarto no painel de administração', () => {
     cy.visit('https://hotelariaienh.000webhostapp.com/login.php');
@@ -80,8 +83,9 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('[type="submit"]').click();
     cy.title().should('eq', 'Painel de Administração');
     cy.get('[href="adicionar_quarto.php"]').click();
-    cy.contains('Page Not Found - error 404').should('exist').then(ErrorElement => {
-      cy.log('Há um erro na página: ' + ErrorElement.text());
+    //validar mensagem de quarto adicionado com sucesso
+    cy.contains('Quarto adicionado com sucesso!').should('exist').then(SuccessElement => {
+      cy.log('Mensagem de sucesso: ' + SuccessElement.text());
      });
   });
 
@@ -93,9 +97,8 @@ describe('Acesso ao sistema de teste', () => {
     cy.get('[type="submit"]').click();
     cy.title().should('eq', 'Painel de Administração');
     cy.get('[href="logout_admin.php"]').click();
-    cy.contains('Page Not Found - error 404').should('exist').then(ErrorElement => {
-      cy.log('Há um erro na página: ' + ErrorElement.text());
-     });
+    //validar se voltei para a tela de login
+    cy.title().should('eq', 'Login');
   });
 
 
